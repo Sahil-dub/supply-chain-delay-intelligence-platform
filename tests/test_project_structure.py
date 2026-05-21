@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 EXPECTED_DIRECTORIES = [
     "api/routes",
     "api/services",

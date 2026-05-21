@@ -5,7 +5,6 @@ from datetime import date, datetime, timedelta
 
 from src.data_generation.config import GenerationConfig
 
-
 SUPPLIER_NAMES = [
     "Rhine Components",
     "Baltic Packaging",
@@ -106,7 +105,11 @@ def generate_warehouses(config: GenerationConfig, rng: random.Random) -> list[di
     return warehouses
 
 
-def generate_products(config: GenerationConfig, rng: random.Random, suppliers: list[dict[str, object]]) -> list[dict[str, object]]:
+def generate_products(
+    config: GenerationConfig,
+    rng: random.Random,
+    suppliers: list[dict[str, object]],
+) -> list[dict[str, object]]:
     products = []
     categories = list(PRODUCT_CATEGORIES.keys())
 
