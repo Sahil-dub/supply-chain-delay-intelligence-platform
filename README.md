@@ -47,16 +47,61 @@ flowchart LR
     G --> E
 ```
 
-## Planned Data Domains
+## Synthetic Dataset
 
-- Orders
-- Shipments
-- Suppliers
-- Warehouses
-- Products
-- Inventory
-- Delivery promises and actual delivery dates
-- Delay reasons
+Phase 2 generates realistic synthetic CSV data for the supply chain domain. The default configuration creates:
+
+- 24 suppliers with high, medium, and low reliability bands.
+- 8 German warehouse locations with different capacity risk profiles.
+- 180 products across electronics, packaging, mechanical, textiles, and raw materials.
+- 1,440 inventory snapshot rows across products and warehouses.
+- 12,000 orders.
+- 12,000 shipments.
+
+The generated data intentionally includes operational issues that are useful for analytics practice:
+
+- Delayed deliveries.
+- Missing promised delivery dates in raw shipment data.
+- In-transit shipments without actual delivery dates.
+- Supplier reliability variation.
+- Warehouse overload flags.
+- Stockout risk when order quantity is higher than available inventory.
+- Seasonal shipment pressure during Q4 and month-end periods.
+
+Raw files are written to `data/raw/`. Cleaned and analysis-ready files are written to `data/processed/`. Small preview files are written to `data/sample/`.
+
+## Entity Relationships
+
+```mermaid
+erDiagram
+    SUPPLIERS ||--o{ PRODUCTS : supplies
+    SUPPLIERS ||--o{ ORDERS : fulfills
+    WAREHOUSES ||--o{ INVENTORY : stores
+    WAREHOUSES ||--o{ ORDERS : ships_from
+    PRODUCTS ||--o{ INVENTORY : stocked_as
+    PRODUCTS ||--o{ ORDERS : ordered_as
+    ORDERS ||--|| SHIPMENTS : creates
+```
+
+## Data Generation Workflow
+
+Run the synthetic data generator:
+
+```powershell
+python -m src.data_generation.generate_data --config src/config/data_generation.json
+```
+
+The workflow is:
+
+```text
+src/config/data_generation.json
+  -> src/data_generation/generate_data.py
+  -> data/raw/*.csv
+  -> data/processed/*.csv
+  -> data/sample/*_sample.csv
+```
+
+The default generation uses random seed `42`, making the dataset reproducible for testing, documentation, and dashboard screenshots.
 
 ## Planned KPI Examples
 
@@ -73,27 +118,27 @@ flowchart LR
 
 ```text
 .
-├── api/                  # FastAPI application, routes, and services
-├── dashboards/           # Power BI dashboard plan and screenshots placeholder
-├── data/
-│   ├── raw/              # Generated or source CSV files
-│   ├── processed/        # Cleaned outputs for validation and debugging
-│   └── sample/           # Small sample files for documentation
-├── docs/                 # Architecture, schema, API, and business documentation
-├── notebooks/            # Optional exploration notebooks
-├── sql/                  # Schema, seed data, and analytics queries
-├── src/
-│   ├── config/           # Configuration helpers
-│   ├── data_generation/  # Synthetic data generation scripts
-│   ├── database/         # Database connection and loading utilities
-│   ├── etl/              # Extraction, cleaning, and transformation logic
-│   ├── features/         # KPI and model feature engineering
-│   ├── models/           # Delay-risk model training and inference code
-│   └── utils/            # Shared helper functions
-├── tests/                # Unit and integration tests
-├── docker-compose.yml    # Local PostgreSQL service
-├── requirements.txt      # Python dependencies
-└── .github/workflows/    # CI workflow
+|-- api/                  # FastAPI application, routes, and services
+|-- dashboards/           # Power BI dashboard plan and screenshots placeholder
+|-- data/
+|   |-- raw/              # Generated or source CSV files
+|   |-- processed/        # Cleaned outputs for validation and debugging
+|   `-- sample/           # Small sample files for documentation
+|-- docs/                 # Architecture, schema, API, and business documentation
+|-- notebooks/            # Optional exploration notebooks
+|-- sql/                  # Schema, seed data, and analytics queries
+|-- src/
+|   |-- config/           # Configuration helpers
+|   |-- data_generation/  # Synthetic data generation scripts
+|   |-- database/         # Database connection and loading utilities
+|   |-- etl/              # Extraction, cleaning, and transformation logic
+|   |-- features/         # KPI and model feature engineering
+|   |-- models/           # Delay-risk model training and inference code
+|   `-- utils/            # Shared helper functions
+|-- tests/                # Unit and integration tests
+|-- docker-compose.yml    # Local PostgreSQL service
+|-- requirements.txt      # Python dependencies
+`-- .github/workflows/    # CI workflow
 ```
 
 ## Phase Roadmap
@@ -131,6 +176,12 @@ Create a local environment file:
 Copy-Item .env.example .env
 ```
 
+Generate synthetic data:
+
+```powershell
+python -m src.data_generation.generate_data --config src/config/data_generation.json
+```
+
 Start PostgreSQL:
 
 ```powershell
@@ -151,5 +202,7 @@ ruff check .
 
 ## Current Status
 
-Phase 1 is complete. The repository structure and local development foundation are in place. Data generation, database schema, ETL logic, API routes, prediction model, and dashboard artifacts will be added in later phases.
+Phase 2 is complete. The repository now includes a configurable synthetic data generator, raw CSV outputs, processed CSV outputs, sample files, validation checks, and dataset documentation.
+
+PostgreSQL schema design, ETL database loading, SQL analytics, API routes, prediction model, and dashboard artifacts will be added in later phases.
 
