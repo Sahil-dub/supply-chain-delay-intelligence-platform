@@ -70,6 +70,35 @@ The generated data intentionally includes operational issues that are useful for
 
 Raw files are written to `data/raw/`. Cleaned and analysis-ready files are written to `data/processed/`. Small preview files are written to `data/sample/`.
 
+## ETL Pipeline
+
+Phase 4 adds a modular CSV ETL pipeline that validates raw files, cleans operational data quality issues, and prepares analytics-ready outputs for PostgreSQL and BI work.
+
+Run the ETL:
+
+```powershell
+python -m src.etl.run_etl --raw-dir data/raw --processed-dir data/processed
+```
+
+The ETL creates:
+
+- `dim_suppliers.csv`
+- `dim_warehouses.csv`
+- `dim_products.csv`
+- `fact_inventory.csv`
+- `fact_orders.csv`
+- `fact_shipments.csv`
+- `mart_shipment_analytics.csv`
+- `etl_summary.json`
+
+Important cleaning logic:
+
+- Validates required columns, keys, and relationships.
+- Standardizes date, boolean, numeric, and categorical fields.
+- Recalculates `delay_days` from promised and actual delivery dates.
+- Corrects inconsistent `is_delayed` labels.
+- Builds a shipment analytics mart with supplier, warehouse, product, order, and delay context.
+
 ## Entity Relationships
 
 ```mermaid
@@ -182,6 +211,12 @@ Generate synthetic data:
 python -m src.data_generation.generate_data --config src/config/data_generation.json
 ```
 
+Run the ETL pipeline:
+
+```powershell
+python -m src.etl.run_etl --raw-dir data/raw --processed-dir data/processed
+```
+
 Start PostgreSQL:
 
 ```powershell
@@ -202,7 +237,6 @@ ruff check .
 
 ## Current Status
 
-Phase 2 is complete. The repository now includes a configurable synthetic data generator, raw CSV outputs, processed CSV outputs, sample files, validation checks, and dataset documentation.
+Phase 4 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, validation checks, tests, and documentation.
 
-PostgreSQL schema design, ETL database loading, SQL analytics, API routes, prediction model, and dashboard artifacts will be added in later phases.
-
+SQL analytics, API routes, prediction model, and dashboard artifacts will be added in later phases.
