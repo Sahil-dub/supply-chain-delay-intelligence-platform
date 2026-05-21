@@ -125,6 +125,34 @@ The SQL layer answers questions such as:
 - What are the top delay reasons?
 - Which shipments need urgent review?
 
+## FastAPI Backend
+
+Phase 6 adds a FastAPI backend that exposes KPI and analytics views as clean JSON responses.
+
+Run the API locally:
+
+```powershell
+$env:DATABASE_URL="postgresql+psycopg2://supply_chain_user:supply_chain_password@localhost:5432/supply_chain_delay"
+uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Open the interactive API docs:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Available endpoints:
+
+- `GET /health`
+- `GET /kpis/overview`
+- `GET /analytics/delay-trends`
+- `GET /analytics/top-delay-reasons`
+- `GET /analytics/supplier-performance`
+- `GET /analytics/warehouse-performance`
+- `GET /analytics/inventory-risk`
+- `GET /analytics/high-risk-shipments`
+
 ## Entity Relationships
 
 ```mermaid
@@ -249,6 +277,12 @@ Start PostgreSQL:
 docker compose up -d postgres
 ```
 
+Run the API:
+
+```powershell
+uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
+```
+
 Run tests:
 
 ```powershell
@@ -263,6 +297,6 @@ ruff check .
 
 ## Current Status
 
-Phase 5 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, business analytics queries, validation checks, tests, and documentation.
+Phase 6 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, a FastAPI backend, business analytics queries, validation checks, tests, and documentation.
 
-API routes, prediction model, and dashboard artifacts will be added in later phases.
+Prediction model and dashboard artifacts will be added in later phases.
