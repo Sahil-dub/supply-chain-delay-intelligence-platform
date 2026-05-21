@@ -1,0 +1,13 @@
+{
+  "seed": 42,
+  "num_suppliers": 24,
+  "num_warehouses": 8,
+  "num_products": 180,
+  "num_orders": 12000,
+  "start_date": "2025-01-01",
+  "end_date": "2025-12-31",
+  "raw_data_dir": "data/raw",
+  "processed_data_dir": "data/processed",
+  "sample_data_dir": "data/sample"
+}
+
