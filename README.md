@@ -300,3 +300,32 @@ ruff check .
 Phase 6 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, a FastAPI backend, business analytics queries, validation checks, tests, and documentation.
 
 Prediction model and dashboard artifacts will be added in later phases.
+
+## API Documentation
+
+### Swagger Interface
+![Swagger](assets/screenshots/swagger_overview.png)
+
+---
+
+## KPI Overview Endpoint
+
+![KPI Overview](assets/screenshots/kpi_overview.png)
+
+---
+
+## Top Delay Reasons
+
+![Delay Reasons](assets/screenshots/top_delay_reasons.png)
+
+---
+
+## Supplier Performance Analytics
+
+![Supplier Performance](assets/screenshots/supplier_performance.png)
+
+---
+
+## High Risk Shipment Detection
+
+![High Risk Shipments](assets/screenshots/high_risk_shipments.png)
