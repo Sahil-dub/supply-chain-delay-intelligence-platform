@@ -1,0 +1,101 @@
+product_id,product_name,category,primary_supplier_id,unit_cost_eur,reorder_point,hazmat_flag
+PRD-0001,Cable 0001,Electronics,SUP-011,346.68,97,False
+PRD-0002,Gear 0002,Mechanical,SUP-001,74.12,409,False
+PRD-0003,Bracket 0003,Mechanical,SUP-004,230.18,360,False
+PRD-0004,Bracket 0004,Mechanical,SUP-006,71.74,316,False
+PRD-0005,Steel Sheet 0005,Raw Materials,SUP-016,270.93,49,False
+PRD-0006,Valve 0006,Mechanical,SUP-008,110.42,330,False
+PRD-0007,Sensor 0007,Electronics,SUP-003,330.3,429,False
+PRD-0008,Plastic Resin 0008,Raw Materials,SUP-016,60.83,321,False
+PRD-0009,Rubber Seal 0009,Raw Materials,SUP-018,434.09,426,False
+PRD-0010,Label Roll 0010,Packaging,SUP-022,181.65,372,False
+PRD-0011,Gear 0011,Mechanical,SUP-015,405.18,101,False
+PRD-0012,Pallet Wrap 0012,Packaging,SUP-001,32.09,341,False
+PRD-0013,Plastic Resin 0013,Raw Materials,SUP-001,266.24,76,False
+PRD-0014,Controller 0014,Electronics,SUP-002,33.59,209,False
+PRD-0015,Controller 0015,Electronics,SUP-016,127.84,149,False
+PRD-0016,Plastic Resin 0016,Raw Materials,SUP-019,326.48,335,False
+PRD-0017,Cover Sheet 0017,Textiles,SUP-004,88.52,377,False
+PRD-0018,Strap 0018,Textiles,SUP-015,192.63,413,False
+PRD-0019,Sensor 0019,Electronics,SUP-024,30.56,213,False
+PRD-0020,Controller 0020,Electronics,SUP-018,89.04,269,False
+PRD-0021,Foam Insert 0021,Packaging,SUP-015,85.43,167,False
+PRD-0022,Scanner 0022,Electronics,SUP-018,364.28,90,False
+PRD-0023,Sensor 0023,Electronics,SUP-008,436.16,125,False
+PRD-0024,Cover Sheet 0024,Textiles,SUP-013,218.43,70,False
+PRD-0025,Foam Insert 0025,Packaging,SUP-013,4.46,175,False
+PRD-0026,Strap 0026,Textiles,SUP-024,192.37,441,False
+PRD-0027,Rubber Seal 0027,Raw Materials,SUP-010,72.62,151,False
+PRD-0028,Steel Sheet 0028,Raw Materials,SUP-002,337.47,65,False
+PRD-0029,Plastic Resin 0029,Raw Materials,SUP-017,28.9,81,False
+PRD-0030,Sensor 0030,Electronics,SUP-008,304.98,246,False
+PRD-0031,Controller 0031,Electronics,SUP-002,261.99,357,False
+PRD-0032,Scanner 0032,Electronics,SUP-019,297.02,307,False
+PRD-0033,Valve 0033,Mechanical,SUP-023,94.7,200,False
+PRD-0034,Label Roll 0034,Packaging,SUP-022,180.22,370,False
+PRD-0035,Gear 0035,Mechanical,SUP-003,144.67,44,False
+PRD-0036,Work Gloves 0036,Textiles,SUP-007,36.21,299,False
+PRD-0037,Bracket 0037,Mechanical,SUP-003,420.2,165,False
+PRD-0038,Valve 0038,Mechanical,SUP-018,73.93,400,False
+PRD-0039,Bearing 0039,Mechanical,SUP-018,301.7,193,False
+PRD-0040,Controller 0040,Electronics,SUP-004,121.58,420,False
+PRD-0041,Plastic Resin 0041,Raw Materials,SUP-020,125.1,147,False
+PRD-0042,Label Roll 0042,Packaging,SUP-009,229.17,66,False
+PRD-0043,Scanner 0043,Electronics,SUP-002,373.8,41,False
+PRD-0044,Bracket 0044,Mechanical,SUP-009,287.97,122,False
+PRD-0045,Cover Sheet 0045,Textiles,SUP-004,253.94,78,False
+PRD-0046,Carton 0046,Packaging,SUP-019,376.15,322,False
+PRD-0047,Foam Insert 0047,Packaging,SUP-010,60.4,226,False
+PRD-0048,Cable 0048,Electronics,SUP-008,97.3,381,False
+PRD-0049,Cable 0049,Electronics,SUP-014,351.82,357,False
+PRD-0050,Pallet Wrap 0050,Packaging,SUP-006,389.55,251,False
+PRD-0051,Controller 0051,Electronics,SUP-011,332.38,440,False
+PRD-0052,Safety Vest 0052,Textiles,SUP-023,122.63,95,False
+PRD-0053,Work Gloves 0053,Textiles,SUP-008,386.86,142,False
+PRD-0054,Strap 0054,Textiles,SUP-008,139.77,154,False
+PRD-0055,Controller 0055,Electronics,SUP-009,181.42,75,False
+PRD-0056,Valve 0056,Mechanical,SUP-013,289.92,387,False
+PRD-0057,Aluminium Rod 0057,Raw Materials,SUP-004,422.87,173,False
+PRD-0058,Bearing 0058,Mechanical,SUP-014,51.9,216,False
+PRD-0059,Gear 0059,Mechanical,SUP-017,274.17,99,False
+PRD-0060,Safety Vest 0060,Textiles,SUP-023,117.23,263,False
+PRD-0061,Controller 0061,Electronics,SUP-003,166.12,380,False
+PRD-0062,Valve 0062,Mechanical,SUP-004,299.7,408,False
+PRD-0063,Valve 0063,Mechanical,SUP-011,301.27,246,False
+PRD-0064,Bracket 0064,Mechanical,SUP-022,89.16,234,False
+PRD-0065,Label Roll 0065,Packaging,SUP-001,184.81,195,False
+PRD-0066,Bracket 0066,Mechanical,SUP-019,195.45,350,False
+PRD-0067,Gear 0067,Mechanical,SUP-022,200.76,149,False
+PRD-0068,Rubber Seal 0068,Raw Materials,SUP-024,357.9,126,False
+PRD-0069,Valve 0069,Mechanical,SUP-008,45.2,384,False
+PRD-0070,Bracket 0070,Mechanical,SUP-005,363.63,52,False
+PRD-0071,Controller 0071,Electronics,SUP-020,442.83,433,False
+PRD-0072,Scanner 0072,Electronics,SUP-021,188.55,334,False
+PRD-0073,Foam Insert 0073,Packaging,SUP-008,224.24,115,False
+PRD-0074,Sensor 0074,Electronics,SUP-008,351.06,130,False
+PRD-0075,Rubber Seal 0075,Raw Materials,SUP-008,25.92,102,False
+PRD-0076,Strap 0076,Textiles,SUP-015,427.69,353,False
+PRD-0077,Rubber Seal 0077,Raw Materials,SUP-018,374.35,268,False
+PRD-0078,Cover Sheet 0078,Textiles,SUP-008,119.23,366,False
+PRD-0079,Gear 0079,Mechanical,SUP-009,283.34,265,False
+PRD-0080,Cable 0080,Electronics,SUP-011,108.2,203,False
+PRD-0081,Steel Sheet 0081,Raw Materials,SUP-008,65.28,236,False
+PRD-0082,Carton 0082,Packaging,SUP-011,188.74,317,False
+PRD-0083,Cover Sheet 0083,Textiles,SUP-014,31.3,239,False
+PRD-0084,Steel Sheet 0084,Raw Materials,SUP-019,386.03,234,False
+PRD-0085,Valve 0085,Mechanical,SUP-014,339.93,315,False
+PRD-0086,Plastic Resin 0086,Raw Materials,SUP-009,221.49,263,False
+PRD-0087,Strap 0087,Textiles,SUP-013,302.15,410,False
+PRD-0088,Foam Insert 0088,Packaging,SUP-020,414.08,313,False
+PRD-0089,Scanner 0089,Electronics,SUP-022,267.78,53,False
+PRD-0090,Scanner 0090,Electronics,SUP-015,64.09,133,False
+PRD-0091,Cable 0091,Electronics,SUP-007,172.77,272,False
+PRD-0092,Valve 0092,Mechanical,SUP-013,343.39,182,False
+PRD-0093,Strap 0093,Textiles,SUP-016,376.29,49,False
+PRD-0094,Steel Sheet 0094,Raw Materials,SUP-012,449.96,154,False
+PRD-0095,Sensor 0095,Electronics,SUP-007,427.5,50,False
+PRD-0096,Plastic Resin 0096,Raw Materials,SUP-016,110.01,382,False
+PRD-0097,Foam Insert 0097,Packaging,SUP-012,315.81,125,False
+PRD-0098,Steel Sheet 0098,Raw Materials,SUP-006,350.78,199,False
+PRD-0099,Cable 0099,Electronics,SUP-013,260.59,243,False
+PRD-0100,Carton 0100,Packaging,SUP-021,267.87,164,False

@@ -1,0 +1,9 @@
+warehouse_id,warehouse_name,city,state,daily_capacity_units,storage_capacity_units,overload_risk_band
+WH-001,Berlin Distribution Center,Berlin,BE,1753,45578,medium
+WH-002,Hamburg Distribution Center,Hamburg,HH,1527,45810,medium
+WH-003,Munich Distribution Center,Munich,BY,933,31722,medium
+WH-004,Cologne Distribution Center,Cologne,NW,746,15666,low
+WH-005,Frankfurt Distribution Center,Frankfurt,HE,977,30287,medium
+WH-006,Leipzig Distribution Center,Leipzig,SN,1438,43140,medium
+WH-007,Stuttgart Distribution Center,Stuttgart,BW,1608,54672,low
+WH-008,Dortmund Distribution Center,Dortmund,NW,1783,32094,medium

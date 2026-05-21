@@ -1,0 +1,12 @@
+{
+  "shipment_rows": 12000,
+  "delivered_rows": 11243,
+  "delay_rate": 0.4036,
+  "top_delay_reasons": {
+    "warehouse_capacity_constraint": 763,
+    "supplier_late_dispatch": 714,
+    "inventory_shortage": 656,
+    "carrier_delay": 508,
+    "customs_documentation": 216
+  }
+}

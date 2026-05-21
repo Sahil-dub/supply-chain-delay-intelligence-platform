@@ -1,0 +1,25 @@
+supplier_id,supplier_name,country,reliability_score,reliability_band,standard_lead_time_days,active_flag
+SUP-001,Rhine Components,Czech Republic,0.724,medium,5,True
+SUP-002,Baltic Packaging,France,0.954,high,10,True
+SUP-003,Alpine Industrial Parts,Germany,0.922,high,3,True
+SUP-004,Nordic Freight Supplies,Germany,0.931,high,10,True
+SUP-005,Main River Electronics,Italy,0.945,high,8,True
+SUP-006,Elbe Manufacturing,Germany,0.939,high,4,True
+SUP-007,Danube Tools,Poland,0.771,medium,5,True
+SUP-008,Hanseatic Materials,Germany,0.604,low,8,True
+SUP-009,Ruhr Mechanical,Italy,0.965,high,6,True
+SUP-010,Black Forest Plastics,Italy,0.829,medium,3,True
+SUP-011,Saxon Metals,Italy,0.611,low,6,True
+SUP-012,Bavaria Textile Group,Czech Republic,0.813,medium,11,True
+SUP-013,Rhine Components,France,0.887,high,5,True
+SUP-014,Baltic Packaging,Poland,0.868,medium,3,True
+SUP-015,Alpine Industrial Parts,Czech Republic,0.925,high,4,True
+SUP-016,Nordic Freight Supplies,Czech Republic,0.901,high,12,True
+SUP-017,Main River Electronics,Poland,0.811,medium,10,True
+SUP-018,Elbe Manufacturing,Netherlands,0.745,medium,6,True
+SUP-019,Danube Tools,Italy,0.652,low,5,True
+SUP-020,Hanseatic Materials,Germany,0.846,medium,5,True
+SUP-021,Ruhr Mechanical,Netherlands,0.841,medium,6,True
+SUP-022,Black Forest Plastics,Italy,0.971,high,7,True
+SUP-023,Saxon Metals,France,0.93,high,9,True
+SUP-024,Bavaria Textile Group,France,0.894,high,10,True
