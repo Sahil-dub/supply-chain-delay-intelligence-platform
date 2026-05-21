@@ -19,9 +19,6 @@ env/
 !.env.example
 
 # Data outputs
-data/raw/*.csv
-data/processed/*.csv
-data/sample/*.csv
 data/**/*.parquet
 !data/**/.gitkeep
 
@@ -43,4 +40,3 @@ logs/
 models/
 *.pkl
 *.joblib
-
