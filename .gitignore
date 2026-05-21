@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Data outputs
+data/raw/*.csv
+data/processed/*.csv
+data/sample/*.csv
+data/**/*.parquet
+!data/**/.gitkeep
+
+# Notebooks
+.ipynb_checkpoints/
+
+# IDE and OS files
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Model artifacts
+models/
+*.pkl
+*.joblib
+
