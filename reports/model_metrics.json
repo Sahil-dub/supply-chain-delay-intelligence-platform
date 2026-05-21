@@ -1,0 +1,42 @@
+{
+  "dataset": {
+    "input_path": "data\\processed\\mart_shipment_analytics.csv",
+    "rows_used": 11243,
+    "train_rows": 8432,
+    "test_rows": 2811,
+    "positive_delay_rate": 0.3987
+  },
+  "models": {
+    "logistic_regression": {
+      "accuracy": 0.5799,
+      "precision": 0.477,
+      "recall": 0.5558,
+      "f1_score": 0.5134,
+      "roc_auc": 0.6079,
+      "confusion_matrix": {
+        "true_negative": 1007,
+        "false_positive": 683,
+        "false_negative": 498,
+        "true_positive": 623
+      }
+    },
+    "random_forest": {
+      "accuracy": 0.5809,
+      "precision": 0.4775,
+      "recall": 0.5388,
+      "f1_score": 0.5063,
+      "roc_auc": 0.596,
+      "confusion_matrix": {
+        "true_negative": 1029,
+        "false_positive": 661,
+        "false_negative": 517,
+        "true_positive": 604
+      }
+    }
+  },
+  "notes": [
+    "Model is a practical portfolio baseline, not a production AI system.",
+    "Training uses historical synthetic data and should be recalibrated on real company data.",
+    "Actual delivery date, delay days, and delay reason are excluded to avoid target leakage."
+  ]
+}
