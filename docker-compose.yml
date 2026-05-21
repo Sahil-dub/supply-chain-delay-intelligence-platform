@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: supply_chain_delay_postgres
+    environment:
+      POSTGRES_DB: supply_chain_delay
+      POSTGRES_USER: supply_chain_user
+      POSTGRES_PASSWORD: supply_chain_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U supply_chain_user -d supply_chain_delay"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+
