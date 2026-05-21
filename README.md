@@ -99,6 +99,32 @@ Important cleaning logic:
 - Corrects inconsistent `is_delayed` labels.
 - Builds a shipment analytics mart with supplier, warehouse, product, order, and delay context.
 
+## SQL Analytics
+
+Phase 5 adds PostgreSQL views and analyst-ready SQL queries for operational reporting.
+
+Create reusable KPI views:
+
+```powershell
+psql $env:DATABASE_URL -f sql/kpi_views.sql
+```
+
+Run business analytics queries:
+
+```powershell
+psql $env:DATABASE_URL -f sql/analytics_queries.sql
+```
+
+The SQL layer answers questions such as:
+
+- What is the overall on-time delivery rate?
+- Which suppliers have the weakest delivery performance?
+- Which warehouses show bottleneck signals?
+- Which inventory positions have stockout risk?
+- Which product categories have the highest delay rate?
+- What are the top delay reasons?
+- Which shipments need urgent review?
+
 ## Entity Relationships
 
 ```mermaid
@@ -237,6 +263,6 @@ ruff check .
 
 ## Current Status
 
-Phase 4 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, validation checks, tests, and documentation.
+Phase 5 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, business analytics queries, validation checks, tests, and documentation.
 
-SQL analytics, API routes, prediction model, and dashboard artifacts will be added in later phases.
+API routes, prediction model, and dashboard artifacts will be added in later phases.
