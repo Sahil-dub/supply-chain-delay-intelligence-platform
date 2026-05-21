@@ -176,6 +176,35 @@ Screenshot placeholders live in:
 dashboards/screenshots/
 ```
 
+## Delay-Risk Prediction Model
+
+Phase 8 adds a practical delay-risk prediction model using the processed shipment analytics mart.
+
+Train the model:
+
+```powershell
+python -m src.models.train_model --input-path data/processed/mart_shipment_analytics.csv --model-path models/delay_risk_model.joblib --metrics-path reports/model_metrics.json --feature-importance-path reports/feature_importance.csv
+```
+
+Run a single example prediction:
+
+```powershell
+python -m src.models.predict_delay_risk --model-path models/delay_risk_model.joblib
+```
+
+The model layer includes:
+
+- Logistic Regression baseline.
+- Random Forest classifier.
+- Train/test split.
+- Categorical and numerical preprocessing.
+- Accuracy, precision, recall, F1-score, ROC-AUC, and confusion matrix.
+- Random Forest feature importance.
+- Saved model artifact in `models/`.
+- Metrics and feature importance reports in `reports/`.
+
+The model is intentionally presented as a baseline decision-support tool, not a production AI system.
+
 ## Entity Relationships
 
 ```mermaid
@@ -320,9 +349,9 @@ ruff check .
 
 ## Current Status
 
-Phase 7 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, a FastAPI backend, Power BI dashboard planning artifacts, business analytics queries, validation checks, tests, and documentation.
+Phase 8 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, a FastAPI backend, Power BI dashboard planning artifacts, a practical delay-risk prediction model, business analytics queries, validation checks, tests, and documentation.
 
-Prediction model and final dashboard screenshots will be added in later phases.
+Final dashboard screenshots and documentation polish will be added in later phases.
 
 ## API Documentation
 
