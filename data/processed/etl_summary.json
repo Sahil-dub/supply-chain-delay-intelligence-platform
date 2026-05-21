@@ -1,0 +1,7 @@
+{
+  "inconsistent_delay_labels_before": 1309,
+  "inconsistent_delay_labels_after": 0,
+  "fact_orders_rows": 12000,
+  "fact_shipments_rows": 12000,
+  "mart_shipment_analytics_rows": 12000
+}
