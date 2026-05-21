@@ -153,6 +153,29 @@ Available endpoints:
 - `GET /analytics/inventory-risk`
 - `GET /analytics/high-risk-shipments`
 
+## Power BI Dashboard Design
+
+Phase 7 adds a professional Power BI dashboard plan with page layouts, KPI definitions, visual recommendations, slicers, stakeholder workflows, and dashboard-ready SQL.
+
+Dashboard pages:
+
+- Executive Overview
+- Supplier Analytics
+- Warehouse Operations
+- Shipment Risk Monitoring
+
+Dashboard planning files:
+
+- `dashboards/powerbi_dashboard_plan.md`
+- `docs/phase_7_powerbi_dashboard.md`
+- `sql/powerbi_dashboard_queries.sql`
+
+Screenshot placeholders live in:
+
+```text
+dashboards/screenshots/
+```
+
 ## Entity Relationships
 
 ```mermaid
@@ -297,9 +320,9 @@ ruff check .
 
 ## Current Status
 
-Phase 6 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, a FastAPI backend, business analytics queries, validation checks, tests, and documentation.
+Phase 7 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, a FastAPI backend, Power BI dashboard planning artifacts, business analytics queries, validation checks, tests, and documentation.
 
-Prediction model and dashboard artifacts will be added in later phases.
+Prediction model and final dashboard screenshots will be added in later phases.
 
 ## API Documentation
 
