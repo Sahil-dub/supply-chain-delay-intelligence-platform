@@ -1,211 +1,148 @@
 # Supply Chain Delay Intelligence Platform
 
-A portfolio project for analyzing, monitoring, and predicting supply chain delays using Python, PostgreSQL, SQL, FastAPI, Docker, and Power BI.
+**End-to-end supply chain analytics platform for identifying shipment delays, supplier performance issues, warehouse bottlenecks, inventory risk, and shipment delay risk.**
 
-## Business Problem
+Built with **Python, PostgreSQL, SQL, FastAPI, Power BI, scikit-learn, Docker, and pytest**.
 
-Operations teams often know that shipments are late, but they do not always know why. Delays can come from unreliable suppliers, overloaded warehouses, stock availability problems, transport issues, or weak planning data.
+![KPI Overview](assets/screenshots/kpi_overview.png)
 
-This project turns raw operational data into a dashboard-ready analytics layer that helps business users answer practical questions:
+## Project at a glance
 
-- Which suppliers are most reliable?
-- Which warehouses are creating bottlenecks?
-- Which products or inventory locations have stockout risk?
-- What are the most common delay reasons?
-- Are there patterns that can help flag shipment delay risk earlier?
+| Area | Implementation |
+|---|---|
+| Dataset | 12,000 orders + 12,000 shipments |
+| Suppliers | 24 |
+| Warehouses | 8 |
+| Products | 180 |
+| Inventory snapshots | 1,440 |
+| Data pipeline | Python ETL + validation |
+| Database | PostgreSQL |
+| Analytics | SQL KPI views + analytical queries |
+| API | FastAPI |
+| BI | Power BI |
+| Prediction | Logistic Regression + Random Forest |
+| Quality | pytest + Ruff + GitHub Actions |
+| Local infrastructure | Docker |
 
-## Target Users
+## What it does
 
-- Operations manager
-- Logistics analyst
-- Warehouse manager
-- Business analyst
-- Supply chain analyst
+The platform transforms raw operational data into an analytics layer for logistics and operations teams.
 
-## Why This Project Matters
+It answers practical questions such as:
 
-This project is designed to demonstrate skills relevant for Data Analyst, BI Analyst, and Junior Data Engineer Werkstudent roles in Germany:
+- Which suppliers have the weakest delivery performance?
+- Which warehouses show bottleneck signals?
+- Which products and inventory locations have stockout risk?
+- What are the most common shipment delay reasons?
+- Which shipments should be reviewed first?
+- Can historical operational features help flag shipment delay risk earlier?
 
-- **SQL and data modeling:** normalized source tables plus analytics-ready KPI views.
-- **Data cleaning:** realistic missing values, date handling, and operational edge cases.
-- **ETL development:** repeatable pipeline from raw CSV files into PostgreSQL.
-- **BI readiness:** Power BI-friendly tables and KPI definitions.
-- **API development:** FastAPI endpoints for operational metrics and prediction results.
-- **Basic predictive analytics:** an interpretable delay-risk model with clear limitations.
-- **Professional delivery:** Docker setup, tests, CI, documentation, and realistic commit history.
-
-## Planned Architecture
+## Architecture
 
 ```mermaid
 flowchart LR
-    A["Synthetic raw CSV data"] --> B["Python ETL pipeline"]
-    B --> C["PostgreSQL warehouse"]
-    C --> D["SQL analytics layer"]
-    D --> E["FastAPI endpoints"]
-    D --> F["Power BI dashboard"]
-    C --> G["Delay-risk model"]
+    A["Raw CSV Data"] --> B["Python ETL"]
+    B --> C["PostgreSQL"]
+    C --> D["SQL Analytics Layer"]
+    D --> E["FastAPI"]
+    D --> F["Power BI"]
+    C --> G["Delay Risk Model"]
     G --> E
 ```
 
-## Synthetic Dataset
+## Engineering highlights
 
-Phase 2 generates realistic synthetic CSV data for the supply chain domain. The default configuration creates:
+### Data Engineering
 
-- 24 suppliers with high, medium, and low reliability bands.
-- 8 German warehouse locations with different capacity risk profiles.
-- 180 products across electronics, packaging, mechanical, textiles, and raw materials.
-- 1,440 inventory snapshot rows across products and warehouses.
-- 12,000 orders.
-- 12,000 shipments.
+- Built a reproducible synthetic supply-chain dataset covering suppliers, warehouses, products, orders, shipments, and inventory.
+- Developed a modular ETL pipeline for validation, cleaning, transformation, and analytics-mart generation.
+- Standardized dates, booleans, numeric fields, and categorical values.
+- Recalculated delay measures and corrected inconsistent delay labels.
+- Produced fact, dimension, and analytics-mart CSV outputs ready for database loading and BI.
 
-The generated data intentionally includes operational issues that are useful for analytics practice:
+### SQL & PostgreSQL
 
-- Delayed deliveries.
-- Missing promised delivery dates in raw shipment data.
-- In-transit shipments without actual delivery dates.
-- Supplier reliability variation.
-- Warehouse overload flags.
-- Stockout risk when order quantity is higher than available inventory.
-- Seasonal shipment pressure during Q4 and month-end periods.
+- Designed relational source tables and analytics-ready structures.
+- Added reusable KPI views and business-focused SQL queries.
+- Analyzed supplier performance, warehouse bottlenecks, inventory risk, delay reasons, and shipment priority.
 
-Raw files are written to `data/raw/`. Cleaned and analysis-ready files are written to `data/processed/`. Small preview files are written to `data/sample/`.
+### API
 
-## ETL Pipeline
+FastAPI exposes the analytics layer through typed JSON endpoints:
 
-Phase 4 adds a modular CSV ETL pipeline that validates raw files, cleans operational data quality issues, and prepares analytics-ready outputs for PostgreSQL and BI work.
-
-Run the ETL:
-
-```powershell
-python -m src.etl.run_etl --raw-dir data/raw --processed-dir data/processed
+```text
+GET /health
+GET /kpis/overview
+GET /analytics/delay-trends
+GET /analytics/top-delay-reasons
+GET /analytics/supplier-performance
+GET /analytics/warehouse-performance
+GET /analytics/inventory-risk
+GET /analytics/high-risk-shipments
 ```
 
-The ETL creates:
-
-- `dim_suppliers.csv`
-- `dim_warehouses.csv`
-- `dim_products.csv`
-- `fact_inventory.csv`
-- `fact_orders.csv`
-- `fact_shipments.csv`
-- `mart_shipment_analytics.csv`
-- `etl_summary.json`
-
-Important cleaning logic:
-
-- Validates required columns, keys, and relationships.
-- Standardizes date, boolean, numeric, and categorical fields.
-- Recalculates `delay_days` from promised and actual delivery dates.
-- Corrects inconsistent `is_delayed` labels.
-- Builds a shipment analytics mart with supplier, warehouse, product, order, and delay context.
-
-## SQL Analytics
-
-Phase 5 adds PostgreSQL views and analyst-ready SQL queries for operational reporting.
-
-Create reusable KPI views:
-
-```powershell
-psql $env:DATABASE_URL -f sql/kpi_views.sql
-```
-
-Run business analytics queries:
-
-```powershell
-psql $env:DATABASE_URL -f sql/analytics_queries.sql
-```
-
-The SQL layer answers questions such as:
-
-- What is the overall on-time delivery rate?
-- Which suppliers have the weakest delivery performance?
-- Which warehouses show bottleneck signals?
-- Which inventory positions have stockout risk?
-- Which product categories have the highest delay rate?
-- What are the top delay reasons?
-- Which shipments need urgent review?
-
-## FastAPI Backend
-
-Phase 6 adds a FastAPI backend that exposes KPI and analytics views as clean JSON responses.
-
-Run the API locally:
-
-```powershell
-$env:DATABASE_URL="postgresql+psycopg2://supply_chain_user:supply_chain_password@localhost:5432/supply_chain_delay"
-uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
-```
-
-Open the interactive API docs:
+Interactive Swagger documentation is available locally at:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-Available endpoints:
+### Power BI
 
-- `GET /health`
-- `GET /kpis/overview`
-- `GET /analytics/delay-trends`
-- `GET /analytics/top-delay-reasons`
-- `GET /analytics/supplier-performance`
-- `GET /analytics/warehouse-performance`
-- `GET /analytics/inventory-risk`
-- `GET /analytics/high-risk-shipments`
-
-## Power BI Dashboard Design
-
-Phase 7 adds a professional Power BI dashboard plan with page layouts, KPI definitions, visual recommendations, slicers, stakeholder workflows, and dashboard-ready SQL.
-
-Dashboard pages:
+The project includes a Power BI dashboard covering:
 
 - Executive Overview
 - Supplier Analytics
 - Warehouse Operations
 - Shipment Risk Monitoring
 
-Dashboard planning files:
+Dashboard-ready SQL queries and KPI definitions are included alongside the `.pbix` dashboard file.
 
-- `dashboards/powerbi_dashboard_plan.md`
-- `docs/phase_7_powerbi_dashboard.md`
-- `sql/powerbi_dashboard_queries.sql`
+### Predictive analytics
 
-Screenshot placeholders live in:
+The project includes two baseline classifiers:
 
-```text
-dashboards/screenshots/
-```
+- Logistic Regression
+- Random Forest
 
-## Delay-Risk Prediction Model
+The modeling pipeline includes preprocessing, categorical encoding, numerical scaling, historical delay features, train/test evaluation, confusion matrices, ROC-AUC, feature importance, model serialization, and inference.
 
-Phase 8 adds a practical delay-risk prediction model using the processed shipment analytics mart.
+**Important:** the model is intentionally presented as a portfolio baseline rather than a production AI system. The training data is synthetic, and the current validation results are not strong enough to claim production-level predictive performance.
 
-Train the model:
+## Model results
 
-```powershell
-python -m src.models.train_model --input-path data/processed/mart_shipment_analytics.csv --model-path models/delay_risk_model.joblib --metrics-path reports/model_metrics.json --feature-importance-path reports/feature_importance.csv
-```
+The current held-out test results are:
 
-Run a single example prediction:
+| Model | Accuracy | Precision | Recall | F1 | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| Logistic Regression | 57.99% | 47.70% | 55.58% | 51.34% | 0.6079 |
+| Random Forest | 58.09% | 47.75% | 53.88% | 50.63% | 0.5960 |
 
-```powershell
-python -m src.models.predict_delay_risk --model-path models/delay_risk_model.joblib
-```
+These results are included for transparency. The project treats the model as an experimentation and decision-support component, not as a production-ready predictor.
 
-The model layer includes:
+## Dashboard & API
 
-- Logistic Regression baseline.
-- Random Forest classifier.
-- Train/test split.
-- Categorical and numerical preprocessing.
-- Accuracy, precision, recall, F1-score, ROC-AUC, and confusion matrix.
-- Random Forest feature importance.
-- Saved model artifact in `models/`.
-- Metrics and feature importance reports in `reports/`.
+### KPI Overview
 
-The model is intentionally presented as a baseline decision-support tool, not a production AI system.
+![KPI Overview](assets/screenshots/kpi_overview.png)
 
-## Entity Relationships
+### Supplier Performance
+
+![Supplier Performance](assets/screenshots/supplier_performance.png)
+
+### High-Risk Shipments
+
+![High Risk Shipments](assets/screenshots/high_risk_shipments.png)
+
+### Swagger API
+
+![Swagger](assets/screenshots/swagger_overview.png)
+
+### Delay Reasons
+
+![Delay Reasons](assets/screenshots/top_delay_reasons.png)
+
+## Data model
 
 ```mermaid
 erDiagram
@@ -218,166 +155,185 @@ erDiagram
     ORDERS ||--|| SHIPMENTS : creates
 ```
 
-## Data Generation Workflow
+## Dataset
 
-Run the synthetic data generator:
+The default data generator creates:
+
+- 24 suppliers with different reliability bands.
+- 8 German warehouse locations with different capacity-risk profiles.
+- 180 products across electronics, packaging, mechanical, textiles, and raw materials.
+- 1,440 inventory snapshots.
+- 12,000 orders.
+- 12,000 shipments.
+
+The synthetic data intentionally contains operational edge cases such as delayed deliveries, missing promised delivery dates, in-transit shipments without actual delivery dates, supplier reliability variation, warehouse overload flags, stockout risk, and seasonal shipment pressure.
+
+The generator uses random seed `42` for reproducibility.
+
+## Data workflow
+
+```text
+Configuration
+    ↓
+Synthetic data generator
+    ↓
+data/raw/*.csv
+    ↓
+Validation + transformation
+    ↓
+data/processed/*.csv
+    ↓
+PostgreSQL
+    ↓
+SQL analytics
+    ├── FastAPI
+    └── Power BI
+
+Shipment analytics mart
+    ↓
+Delay-risk model
+    ↓
+Prediction API
+```
+
+Generate the data:
 
 ```powershell
 python -m src.data_generation.generate_data --config src/config/data_generation.json
 ```
 
-The workflow is:
+Run the ETL:
 
-```text
-src/config/data_generation.json
-  -> src/data_generation/generate_data.py
-  -> data/raw/*.csv
-  -> data/processed/*.csv
-  -> data/sample/*_sample.csv
+```powershell
+python -m src.etl.run_etl --raw-dir data/raw --processed-dir data/processed
 ```
 
-The default generation uses random seed `42`, making the dataset reproducible for testing, documentation, and dashboard screenshots.
-
-## Planned KPI Examples
-
-- On-time delivery rate
-- Average delay days
-- Supplier reliability score
-- Warehouse delay rate
-- Inventory stockout risk
-- Delayed order percentage
-- Top delay reasons
-- Monthly delay trend
-
-## Repository Structure
+The ETL produces:
 
 ```text
-.
-|-- api/                  # FastAPI application, routes, and services
-|-- dashboards/           # Power BI dashboard plan and screenshots placeholder
-|-- data/
-|   |-- raw/              # Generated or source CSV files
-|   |-- processed/        # Cleaned outputs for validation and debugging
-|   `-- sample/           # Small sample files for documentation
-|-- docs/                 # Architecture, schema, API, and business documentation
-|-- notebooks/            # Optional exploration notebooks
-|-- sql/                  # Schema, seed data, and analytics queries
-|-- src/
-|   |-- config/           # Configuration helpers
-|   |-- data_generation/  # Synthetic data generation scripts
-|   |-- database/         # Database connection and loading utilities
-|   |-- etl/              # Extraction, cleaning, and transformation logic
-|   |-- features/         # KPI and model feature engineering
-|   |-- models/           # Delay-risk model training and inference code
-|   `-- utils/            # Shared helper functions
-|-- tests/                # Unit and integration tests
-|-- docker-compose.yml    # Local PostgreSQL service
-|-- requirements.txt      # Python dependencies
-`-- .github/workflows/    # CI workflow
+dim_suppliers.csv
+dim_warehouses.csv
+dim_products.csv
+fact_inventory.csv
+fact_orders.csv
+fact_shipments.csv
+mart_shipment_analytics.csv
+etl_summary.json
 ```
 
-## Phase Roadmap
+## Quick start
 
-1. **Project setup:** structure, README, requirements, Git ignore rules, Docker scaffold, and CI.
-2. **Synthetic data generation:** realistic supply chain entities and raw CSV files.
-3. **PostgreSQL schema:** source tables, keys, relationships, and seed strategy.
-4. **ETL pipeline:** clean raw data and load analytics-ready tables.
-5. **SQL analytics:** KPI queries and business analysis views.
-6. **FastAPI backend:** endpoints for KPIs, supplier performance, bottlenecks, delay analysis, inventory risk, and prediction.
-7. **Delay-risk model:** interpretable baseline model with honest limitations.
-8. **Testing and hardening:** pytest coverage, logging, error handling, and Docker improvements.
-9. **Power BI plan:** dashboard pages, chart choices, and screenshot placeholders.
-10. **Final documentation polish:** recruiter-ready README, architecture notes, and business insights.
-
-## Local Setup
-
-Create and activate a virtual environment:
+### 1. Create the environment
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+.\\.venv\\Scripts\\Activate.ps1
 ```
 
-Install dependencies:
+### 2. Install dependencies
 
 ```powershell
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Create a local environment file:
+### 3. Configure the environment
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Generate synthetic data:
+### 4. Generate the dataset
 
 ```powershell
 python -m src.data_generation.generate_data --config src/config/data_generation.json
 ```
 
-Run the ETL pipeline:
+### 5. Run the ETL pipeline
 
 ```powershell
 python -m src.etl.run_etl --raw-dir data/raw --processed-dir data/processed
 ```
 
-Start PostgreSQL:
+### 6. Start PostgreSQL
 
 ```powershell
 docker compose up -d postgres
 ```
 
-Run the API:
+### 7. Run the API
 
 ```powershell
+$env:DATABASE_URL="postgresql+psycopg2://supply_chain_user:supply_chain_password@localhost:5432/supply_chain_delay"
 uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Run tests:
+### 8. Run tests and linting
 
 ```powershell
 pytest
-```
-
-Run lint checks:
-
-```powershell
 ruff check .
 ```
 
-## Current Status
+## Train the delay-risk model
 
-Phase 8 is complete. The repository now includes a configurable synthetic data generator, PostgreSQL schema files, a modular CSV ETL pipeline, analytics-ready processed outputs, reusable SQL KPI views, a FastAPI backend, Power BI dashboard planning artifacts, a practical delay-risk prediction model, business analytics queries, validation checks, tests, and documentation.
+```powershell
+python -m src.models.train_model --input-path data/processed/mart_shipment_analytics.csv --model-path models/delay_risk_model.joblib --metrics-path reports/model_metrics.json --feature-importance-path reports/feature_importance.csv
+```
 
-Final dashboard screenshots and documentation polish will be added in later phases.
+Run an example prediction:
 
-## API Documentation
+```powershell
+python -m src.models.predict_delay_risk --model-path models/delay_risk_model.joblib
+```
 
-### Swagger Interface
-![Swagger](assets/screenshots/swagger_overview.png)
+## Repository structure
 
----
+```text
+.
+├── api/                  # FastAPI application, routes, schemas and services
+├── assets/screenshots/   # API and analytics screenshots
+├── dashboards/           # Power BI dashboard and planning artifacts
+├── data/
+│   ├── raw/              # Generated/source CSV data
+│   ├── processed/        # ETL outputs
+│   └── sample/           # Small documentation samples
+├── docs/                 # Architecture, schema, API and business documentation
+├── notebooks/            # Optional exploration notebooks
+├── reports/              # Model metrics and feature importance
+├── sql/                  # Schema, KPI views and analytics queries
+├── src/
+│   ├── config/           # Configuration
+│   ├── data_generation/  # Synthetic data generation
+│   ├── database/         # Database utilities
+│   ├── etl/              # Extraction, validation and transformation
+│   ├── features/         # Feature engineering
+│   └── models/           # Training and inference
+├── tests/                # Automated tests
+├── docker-compose.yml    # Local PostgreSQL service
+├── requirements.txt      # Python dependencies
+└── .github/workflows/    # CI workflow
+```
 
-## KPI Overview Endpoint
+## Quality & reproducibility
 
-![KPI Overview](assets/screenshots/kpi_overview.png)
+The repository includes:
 
----
+- Unit and integration tests with pytest.
+- Ruff linting.
+- GitHub Actions for automated lint and test checks.
+- Reproducible synthetic data generation using seed `42`.
+- Configuration-driven ETL and model training.
+- Dockerized PostgreSQL for local development.
+- Validation checks for source data and transformations.
 
-## Top Delay Reasons
+## Documentation
 
-![Delay Reasons](assets/screenshots/top_delay_reasons.png)
+Detailed implementation notes remain available in:
 
----
+- `docs/`
+- `dashboards/powerbi_dashboard_plan.md`
+- `sql/`
+- `reports/`
 
-## Supplier Performance Analytics
-
-![Supplier Performance](assets/screenshots/supplier_performance.png)
-
----
-
-## High Risk Shipment Detection
-
-![High Risk Shipments](assets/screenshots/high_risk_shipments.png)
+The repository's commit history documents the progression from project setup through ETL, SQL analytics, API development, dashboard work, testing, and predictive modeling.
