@@ -14,9 +14,9 @@ pydantic==2.10.2
 
 # Analytics and modeling
 scikit-learn==1.5.2
+joblib==1.4.2
 
 # Testing and code quality
 pytest==8.3.3
 pytest-cov==6.0.0
 ruff==0.8.1
-
