@@ -4,7 +4,7 @@ import argparse
 import logging
 
 from src.etl.config import EtlConfig
-from src.etl.extract import read_existing_processed_tables, read_raw_tables
+from src.etl.extract import read_raw_tables
 from src.etl.load import write_etl_summary, write_processed_tables
 from src.etl.transform import transform_tables
 from src.etl.validation import validate_source_tables
@@ -23,8 +23,6 @@ def main() -> None:
 
     LOGGER.info("Starting ETL pipeline")
     raw_tables = read_raw_tables(config.raw_data_dir)
-    processed_inputs = read_existing_processed_tables(config.processed_data_dir)
-    LOGGER.info("Read %s optional processed input tables", len(processed_inputs))
 
     validate_source_tables(raw_tables)
     analytics_tables, summary = transform_tables(raw_tables)
@@ -36,4 +34,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
