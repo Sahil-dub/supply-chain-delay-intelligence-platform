@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Recruiter demo for the Supply Chain Delay Intelligence Platform by Sahil Dubey.">
+  <title>Supply Chain Intelligence | Sahil Dubey</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <nav><a class="brand" href="https://github.com/Sahil-dub/supply-chain-delay-intelligence-platform">Sahil Dubey / Supply Chain Intelligence</a><a href="https://github.com/Sahil-dub/supply-chain-delay-intelligence-platform">View source ↗</a></nav>
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">RECRUITER DEMO · DATA ENGINEERING + ANALYTICS</p>
+      <h1>From raw operational data to shipment-risk decisions.</h1>
+      <p class="lede">An end-to-end supply-chain analytics platform built with Python ETL, PostgreSQL, SQL analytics, FastAPI, Power BI and baseline machine learning.</p>
+      <div class="actions"><a class="button primary" href="#dashboard">Explore the demo</a><a class="button" href="https://github.com/Sahil-dub/supply-chain-delay-intelligence-platform">Read the code</a></div>
+      <p class="note">This page is a static GitHub Pages demonstration of generated analytics and model results. The production-style API, database and model inference run locally through the repository's FastAPI/PostgreSQL stack.</p>
+    </div>
+    <div class="pipeline">
+      <div>RAW CSV</div><span>→</span><div>PYTHON ETL</div><span>→</span><div>POSTGRESQL</div><span>→</span><div>SQL ANALYTICS</div><span>→</span><div>API / BI / ML</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="dashboard" class="section">
+  <div class="section-head"><div><p class="eyebrow">PROJECT AT A GLANCE</p><h2>The system in numbers</h2></div></div>
+  <div class="kpis">
+    <article><strong>12,000</strong><span>orders</span></article>
+    <article><strong>12,000</strong><span>shipments</span></article>
+    <article><strong>24</strong><span>suppliers</span></article>
+    <article><strong>8</strong><span>warehouses</span></article>
+    <article><strong>180</strong><span>products</span></article>
+    <article><strong>1,440</strong><span>inventory snapshots</span></article>
+  </div>
+</section>
+
+<section class="section two-col">
+  <div class="panel">
+    <p class="eyebrow">SUPPLIER ANALYTICS</p><h2>Reliability landscape</h2>
+    <p class="muted">The synthetic dataset assigns reliability scores and bands to 24 suppliers. Use the filter to inspect the source-backed supplier records.</p>
+    <div class="toolbar"><label>Band <select id="bandFilter"><option value="all">All</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></label><input id="supplierSearch" placeholder="Search supplier or country…"></div>
+    <div class="table-wrap"><table><thead><tr><th>Supplier</th><th>Country</th><th>Score</th><th>Band</th><th>Lead time</th></tr></thead><tbody id="supplierRows"></tbody></table></div>
+  </div>
+  <div class="panel">
+    <p class="eyebrow">WAREHOUSE OPERATIONS</p><h2>Network footprint</h2>
+    <div id="warehouseCards" class="warehouse-grid"></div>
+  </div>
+</section>
+
+<section class="section two-col">
+  <div class="panel">
+    <p class="eyebrow">PREDICTIVE ANALYTICS</p><h2>Delay-risk baseline</h2>
+    <p class="muted">The project deliberately reports these models as portfolio baselines, not production AI. Training uses synthetic historical data and excludes target-leakage fields.</p>
+    <div class="model-grid">
+      <div><span>Logistic Regression</span><strong>ROC-AUC 0.6079</strong><small>Accuracy 57.99% · F1 51.34%</small></div>
+      <div><span>Random Forest</span><strong>ROC-AUC 0.5960</strong><small>Accuracy 58.09% · F1 50.63%</small></div>
+    </div>
+    <div class="bar-list" id="importanceBars"></div>
+  </div>
+  <div class="panel">
+    <p class="eyebrow">ENGINEERING STORY</p><h2>What a recruiter can inspect</h2>
+    <ul class="story">
+      <li><b>ETL:</b> validation, cleaning, transformation and analytics-mart generation.</li>
+      <li><b>SQL/PostgreSQL:</b> relational structures, KPI views and business-focused analytics.</li>
+      <li><b>API:</b> typed FastAPI endpoints for KPIs, trends, supplier, warehouse, inventory and high-risk shipment analytics.</li>
+      <li><b>ML:</b> preprocessing pipelines, historical features, evaluation, feature importance and serialized inference.</li>
+      <li><b>Quality:</b> pytest, Ruff, reproducible seed-based synthetic data and Dockerized PostgreSQL.</li>
+      <li><b>BI:</b> Power BI dashboard planning and analytics-ready outputs.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="panel architecture">
+    <div><p class="eyebrow">ARCHITECTURE</p><h2>One project, multiple data layers</h2></div>
+    <div class="arch-flow"><span>Raw CSV</span><i>→</i><span>Python ETL</span><i>→</i><span>PostgreSQL</span><i>→</i><span>SQL KPI layer</span><i>→</i><span>FastAPI</span><i>→</i><span>BI + decision support</span></div>
+    <div class="api-list"><code>GET /kpis/overview</code><code>GET /analytics/delay-trends</code><code>GET /analytics/top-delay-reasons</code><code>GET /analytics/supplier-performance</code><code>GET /analytics/warehouse-performance</code><code>GET /analytics/inventory-risk</code><code>GET /analytics/high-risk-shipments</code></div>
+  </div>
+</section>
+
+<section class="section final-cta">
+  <p class="eyebrow">WANT THE IMPLEMENTATION?</p>
+  <h2>Inspect the ETL, SQL, API and ML code.</h2>
+  <p>The repository contains the complete local workflow, tests, Docker setup, documentation and model artifacts.</p>
+  <a class="button primary" href="https://github.com/Sahil-dub/supply-chain-delay-intelligence-platform">Open GitHub repository ↗</a>
+</section>
+</main>
+<footer>Supply Chain Delay Intelligence Platform · Built by Sahil Dubey · Synthetic data · Portfolio project</footer>
+<script src="app.js"></script>
+</body>
+</html>
