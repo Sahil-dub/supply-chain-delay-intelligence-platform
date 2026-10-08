@@ -1,6 +1,6 @@
 # Supply Chain Delay Intelligence Platform
 
-**End-to-end supply chain analytics platform for identifying shipment delays, supplier performance issues, warehouse bottlenecks, inventory risk, and shipment delay risk.**
+**End-to-end supply chain analytics platform for identifying shipment delays, supplier performance issues, warehouse bottlenecks, inventory risk, and shipment delay risk.**\n\n**Live recruiter demo:** https://sahil-dub.github.io/supply-chain-delay-intelligence-platform/
 
 Built with **Python, PostgreSQL, SQL, FastAPI, Power BI, scikit-learn, Docker, and pytest**.
 
